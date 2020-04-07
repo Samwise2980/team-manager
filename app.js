@@ -20,14 +20,11 @@ function mainPrompt () {
       type: "list",
       name: "role",
       message: "Who would you like to add?", 
-      choices: ["Manager", "Engineer", "Intern", "All Done"]
+      choices: ["Engineer", "Intern", "All Done"]
     }
   ])
   .then(answers => {
     switch (answers.role){
-      case "Manager":
-        managerPrompt()
-        break;
       case "Engineer":
         engineerPrompt()
         break;
@@ -169,4 +166,4 @@ function writeFile(response){
   });
 }
 
-mainPrompt();
+managerPrompt()
