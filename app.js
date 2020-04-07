@@ -13,7 +13,150 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+let employees = [];
 
+function mainPrompt () {
+  inquirer
+  .prompt([
+    {
+      type: "list",
+      name: "role",
+      message: "Who would you like to add?", 
+      choices: ["Manager", "Engineer", "Intern", "All Done"]
+    }
+  ])
+  .then(answers => {
+    switch (answers.role){
+      case "Manager":
+        managerPrompt()
+        break;
+      case "Engineer":
+        engineerPrompt()
+        break;
+      case "Intern":
+        internPrompt()
+        break;
+      case "All Done":
+        break;
+    }
+
+  })
+  .catch(error => {
+    if(error.isTtyError) {
+      console.log("Something went wrong! Please try again.")
+    }
+  });
+}
+
+
+function managerPrompt(){
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "managerName",
+      message: "What is the managers name?", 
+    },
+    {
+      type: "input",
+      name: "managerEmail",
+      message: "What is the managers email?", 
+    },
+    {
+      type: "input",
+      name: "managerID",
+      message: "What is the managers ID?", 
+    },
+    {
+      type: "input",
+      name: "managerOfficeNumber",
+      message: "What is the managers Office Number?", 
+    }
+  ])
+  .then(answers => {
+    console.log(answers);
+    const newManger = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber)
+
+    mainPrompt ();
+  })
+  .catch(error => {
+    if(error.isTtyError) {
+      console.log("Something went wrong! Please try again.")
+    }
+  });
+}
+
+
+function engineerPrompt(){
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "engineerName",
+      message: "What is the engineers name?", 
+    },
+    {
+      type: "input",
+      name: "engineerEmail",
+      message: "What is the engineers email?", 
+    },
+    {
+      type: "input",
+      name: "engineerID",
+      message: "What is the engineers ID?", 
+    },
+    {
+      type: "input",
+      name: "engineerGitHub",
+      message: "What is the engineers GitHub name?", 
+    }
+  ])
+  .then(answers => {
+    mainPrompt ();
+  })
+  .catch(error => {
+    if(error.isTtyError) {
+      console.log("Something went wrong! Please try again.")
+    }
+  });
+}
+
+
+function internPrompt(){
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "internName",
+      message: "What is the interns name?", 
+    },
+    {
+      type: "input",
+      name: "internEmail",
+      message: "What is the interns email?", 
+    },
+    {
+      type: "input",
+      name: "internID",
+      message: "What is the interns ID?", 
+    },
+    {
+      type: "input",
+      name: "internSchool",
+      message: "What is the name of the interns school name?", 
+    }
+  ])
+  .then(answers => {
+    mainPrompt ();
+  })
+  .catch(error => {
+    if(error.isTtyError) {
+      console.log("Something went wrong! Please try again.")
+    }
+  });
+}
+
+mainPrompt();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
