@@ -36,10 +36,12 @@ function mainPrompt () {
       case "Intern":
         internPrompt()
         break;
-      case "All Done":
+      default:
+        render(employees);
         break;
     }
-
+  }).then(response => {
+    
   })
   .catch(error => {
     if(error.isTtyError) {
@@ -74,9 +76,8 @@ function managerPrompt(){
     }
   ])
   .then(answers => {
-    console.log(answers);
     const newManger = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber)
-
+    employees.push(newManger);
     mainPrompt ();
   })
   .catch(error => {
@@ -112,6 +113,8 @@ function engineerPrompt(){
     }
   ])
   .then(answers => {
+    const newEngineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGitHub)
+    employees.push(newEngineer);
     mainPrompt ();
   })
   .catch(error => {
@@ -147,6 +150,8 @@ function internPrompt(){
     }
   ])
   .then(answers => {
+    const newIntern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool)
+    employees.push(newIntern);
     mainPrompt ();
   })
   .catch(error => {
