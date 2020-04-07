@@ -16,7 +16,11 @@ A team builder that runs in the terminal. It will ask you questions on which mem
 
 ## Usage 
 
-When you first run it, you will be prompted in the terminal with which member you would like to add. Once you have picked which memberm then you will be asked a series of questions about that individual member. 
+When you first run it, you will be prompted in the terminal about the managers info of the team. Then it will ask which member you would like to add. Once you have picked which memberm then you will be asked a series of questions about that individual member. 
+
+
+
+![Team Manager Prompts](assets/team-manager-prompt.PNG)
 
 
 
